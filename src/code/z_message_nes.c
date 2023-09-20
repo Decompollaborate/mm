@@ -1103,7 +1103,6 @@ void Message_DecodeNES(PlayState* play) {
     Font* font = &msgCtx->font; // spE0
     Player* player;             // spDC
     s16 decodedBufPos;          // spDA
-    s16 value;
     u32 timeToMoonCrash;
     s16 i;         // s1
     s16 spD0;      // numLines
@@ -1115,11 +1114,8 @@ void Message_DecodeNES(PlayState* play) {
     s16 spA8[8];
     f32 spA4;
     s16 playerNameLen; // s0
-    s16 var_v1_3;
     u8 curChar; // sp78
     s8 charOffset;
-    u8 temp_s2_2;
-    u8 var_s2_9;
 
     player = GET_PLAYER(play);
     decodedBufPos = 0;
@@ -1134,6 +1130,7 @@ void Message_DecodeNES(PlayState* play) {
     Message_SetupLoadItemIcon(play);
 
     while (true) {
+        s16 value;
         curChar = font->msgBuf.schar[msgCtx->msgBufPos];
         msgCtx->decodedBuffer.schar[decodedBufPos] = font->msgBuf.schar[msgCtx->msgBufPos];
 
@@ -1569,6 +1566,7 @@ void Message_DecodeNES(PlayState* play) {
             }
             decodedBufPos--;
         } else if (curChar == 0xD3) {
+            u8 var_s2_9;
             if (gSaveContext.save.timeSpeedOffset == 18) {
                 var_s2_9 = 0;
             } else if (gSaveContext.save.timeSpeedOffset == 0) {
@@ -1732,6 +1730,7 @@ void Message_DecodeNES(PlayState* play) {
             }
             decodedBufPos--;
         } else if ((curChar >= 0xE1) && (curChar < 0xE7)) {
+            u8 temp_s2_2;
             msgCtx->decodedBuffer.schar[decodedBufPos] =
                 D_801D08E4[((void)0, gSaveContext.save.saveInfo.spiderHouseMaskOrder[(s16)(curChar - 0xE1)])];
             temp_s2_2 = D_801D0900[((void)0, gSaveContext.save.saveInfo.spiderHouseMaskOrder[(s16)(curChar - 0xE1)])];
@@ -1854,8 +1853,8 @@ void Message_DecodeNES(PlayState* play) {
                     var_fs0 -= 1.0f;
                 }
             }
-            spA4 += var_fs0 * (16.0f * msgCtx->textCharScale);
             decodedBufPos--;
+            spA4 += var_fs0 * (16.0f * msgCtx->textCharScale);
         } else if ((curChar == 0xF3) || (curChar == 0xF4) || (curChar == 0xF5)) {
             value = (&gSaveContext.save.saveInfo.unk_EC4)[curChar - 0xF3];
             digits[0] = digits[1] = digits[2] = 0;
@@ -1931,6 +1930,7 @@ void Message_DecodeNES(PlayState* play) {
             }
 
             for (i = 0; i < playerNameLen; i++) {
+                s8 var_v1_3;
                 ptr = &font->fontBuf[((void)0, gSaveContext.save.saveInfo.inventory
                                                    .dekuPlaygroundPlayerName[(s16)(curChar - 0xFD)][i]) *
                                      FONT_CHAR_TEX_SIZE];
