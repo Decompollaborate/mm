@@ -1730,7 +1730,7 @@ void Message_DecodeNES(PlayState* play) {
             }
             decodedBufPos--;
         } else if ((curChar >= 0xE1) && (curChar < 0xE7)) {
-            u8 temp_s2_2;
+            s8 temp_s2_2;
             msgCtx->decodedBuffer.schar[decodedBufPos] =
                 D_801D08E4[((void)0, gSaveContext.save.saveInfo.spiderHouseMaskOrder[(s16)(curChar - 0xE1)])];
             temp_s2_2 = D_801D0900[((void)0, gSaveContext.save.saveInfo.spiderHouseMaskOrder[(s16)(curChar - 0xE1)])];
