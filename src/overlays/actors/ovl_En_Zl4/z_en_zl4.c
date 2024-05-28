@@ -34,7 +34,23 @@ ActorInit En_Zl4_InitVars = {
 
 extern UNK_TYPE D_06013328;
 
-#pragma GLOBAL_ASM("asm/non_matchings/overlays/ovl_En_Zl4/func_809A1BB0.s")
+// #pragma GLOBAL_ASM("asm/non_matchings/overlays/ovl_En_Zl4/func_809A1BB0.s")
+
+void func_809A1BB0(SkelAnime* skelAnime, AnimationInfo* animInfo, u16 animIndex) {
+    f32 endFrame;
+
+    animInfo += animIndex;
+
+    if (animInfo->frameCount < 0.0f) {
+        endFrame = Animation_GetLastFrame(animInfo->animation);
+    } else {
+        endFrame = animInfo->frameCount;
+    }
+    Animation_Change(skelAnime, animInfo->animation, animInfo->playSpeed, animInfo->startFrame, endFrame,
+                     animInfo->mode, animInfo->morphFrames);
+}
+/* Warning: struct EnTorch2 is not defined (only forward-declared) */
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/ovl_En_Zl4/EnZl4_Init.s")
 
