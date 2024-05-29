@@ -56,7 +56,10 @@ void func_809A1BB0(SkelAnime* skelAnime, AnimationInfo* animInfo, u16 animIndex)
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/ovl_En_Zl4/EnZl4_Destroy.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/overlays/ovl_En_Zl4/func_809A1D0C.s")
+// #pragma GLOBAL_ASM("asm/non_matchings/overlays/ovl_En_Zl4/func_809A1D0C.s")
+void func_809A1D0C(EnZl4 *this, PlayState *play) {
+
+}
 
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/ovl_En_Zl4/EnZl4_Update.s")
 
